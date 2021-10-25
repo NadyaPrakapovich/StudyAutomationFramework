@@ -4,6 +4,7 @@ import com.stormnet.tests.AbstractTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -20,8 +21,12 @@ public class FirstTest extends AbstractTests {
 		searchField.sendKeys(Keys.ENTER);
 
 		List<WebElement> serarchResults = driver.findElements(By.tagName("h3"));
-		WebElement result = serarchResults.get(3);
+		WebElement result = serarchResults.get(2);
 		result.click();
+
+		String windowTitle=driver.getTitle();
+		System.out.println(windowTitle);
+		Assert.assertEquals(windowTitle, "Banana - Wikipedia","Unknown window title");
 	}
 
 
