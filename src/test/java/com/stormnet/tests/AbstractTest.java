@@ -1,6 +1,7 @@
 package com.stormnet.tests;
 
 import com.stormnet.listeners.CustomTestNgListener;
+import framework.driver.UiDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.WebDriver;
@@ -11,19 +12,16 @@ import org.testng.annotations.Listeners;
 import org.testng.reporters.TestHTMLReporter;
 
 @Listeners({AllureTestNg.class})
-public class AbstractTests {
+public class AbstractTest {
 	protected WebDriver driver;
 
 	@BeforeMethod
 	public void setup() {
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		this.driver = driver;
+		UiDriver.getDriver();
 	}
 
 	@AfterMethod
 	public void tearDown() {
-		driver.close();
+		UiDriver.closeDriver();
 	}
 }
