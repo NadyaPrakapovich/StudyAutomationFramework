@@ -3,7 +3,8 @@
 <suite name="FirstTest tests">
     <test name="firsts/first test">
         <packages>
-            <package name="com.stormnet.tests.lesson5.*"></package>
+<!--            <package name="com.stormnet.tests.lesson5.*"></package>-->
+            <package name="com.stormnet.tests.mainTest.*"></package>
         </packages>
     </test>
 </suite>
