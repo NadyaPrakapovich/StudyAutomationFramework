@@ -1,12 +1,7 @@
 package pageWrappers.newMailForm;
 
-import framework.driver.UiDriver;
-import framework.driver.UiDriverHelper;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageWrappers.loginPage.loginPage;
 
 import java.time.Duration;
 
@@ -26,26 +21,22 @@ public class MailFormHelper {
 		MailForm.getFieldTheme().sendKeys(theme);
 	}
 
-	public static void waitUntilPopupWindow() {
+	public static void sendMail(){
+		MailForm.getButtonSendMail().click();
+	}
+
+
+	public static void waitUntilOpenedMailForm() {
 		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 		wait.withMessage("")
-				.until(ExpectedConditions.visibilityOfElementLocated(MailForm.getFieldWhom().getLocator()));
+				.until(ExpectedConditions.visibilityOfElementLocated(MailForm.FORM_NEW_MAIL_LOCATOR));
 	}
 
 	public static void writeMail(String whom, String subject, String theme) {
-	//		WebElement element = UiDriver.getDriver().findElement(By.xpath("//div[@data-class-bubble=\"yabble-compose js-yabble\"]"));
-//		element.click();
-
-	//	WebElement element = UiDriver.getDriver().findElement(By.className("ComposePopup-BodyContent"));
-
-		//UiDriver.getDriver().switchTo().window(UiDriver.getDriver().getWindowHandle()).getCurrentUrl();
-	//	UiDriverHelper.setChildWindow();
-	//	String mainWindows=UiDriverHelper.getWindowHandle();
-	//	UiDriverHelper.setPopupWindow();
-	//	waitUntilPopupWindow();
 		fillWhom(whom);
 		fillSubject(subject);
 		fillTheme(theme);
+		sendMail();
 	}
 
 }

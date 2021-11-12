@@ -25,9 +25,10 @@ public class UiDriverHelper {
 		}
 	}
 
-	public static void setPopupWindow(String mainWin) {
+	public static void setPopupWindow() {
+
 		for (String activeHandle : UiDriver.getDriver().getWindowHandles()) {
-			if (!activeHandle.equals(mainWin)) {
+			if (!activeHandle.equals(UiDriver.getDriver().getWindowHandles())) {
 				UiDriver.getDriver().switchTo().window(activeHandle);
 			}
 		}

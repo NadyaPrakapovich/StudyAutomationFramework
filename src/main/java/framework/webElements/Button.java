@@ -9,7 +9,7 @@ public class Button extends HtmlElement{
 		super(locator);
 	}
 
-	public void Click(){
+	public void click(){
 		getElement().click();
 	}
 }

@@ -6,7 +6,7 @@ public class Link extends HtmlElement{
 	public Link(By locator) {
 		super(locator);
 	}
-	public void Click(){
+	public void click(){
 		getElement().click();
 	}
 }
