@@ -21,6 +21,8 @@ public class MailPage {
 
 	public static final By PANEL_SAVE_TO_DISK=By.xpath("(//div[@class='mail-MessageSnippet-Item mail-MessageSnippet-Item_attachmentsFiles'])[1]");
 
+	private static final By BUTTON_DISK_LOCATOR=By.cssSelector(".PSHeaderIcon-Image_Disk");
+
 	public static Link getNewMail() {
 		return new Link(NEW_MAIL_LINK_LOCATOR);
 	}
@@ -43,12 +45,16 @@ public class MailPage {
 		return new Button(BUTTON_MOVE_IN_FRAME_LOCATOR);
 	}
 
-	public static Panel getPenal(){
+	public static Panel getPanel(){
 		return new Panel(PANEL_SAVE_TO_DISK);
 	}
 
 	public static Button getCloseIframe(){
 		return new Button(BUTTON_CLOSE_IN_FRAME_LOCATOR);
+	}
+
+	public static Button getDiskButton(){
+		return new Button(BUTTON_DISK_LOCATOR);
 	}
 
 }

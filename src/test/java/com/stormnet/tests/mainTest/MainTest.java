@@ -4,6 +4,8 @@ import com.stormnet.tests.AbstractTest;
 import framework.driver.UiDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageWrappers.diskPage.DiskPageHelper;
+import pageWrappers.mailPage.MailPage;
 import pageWrappers.mailPage.MailPageHelper;
 import pageWrappers.mainPanelAuthorize.PanelAuthorizeHelper;
 import pageWrappers.loginPage.LoginPageHelper;
@@ -32,13 +34,13 @@ public class MainTest extends AbstractTest {
 
 		MailPageHelper.submitSaveToDisk();
 
-		//	MailPageHelper.logOut();
+	//	MailPageHelper.openDisk();
 
+//		MailPageHelper.logOut();
 //		PanelAuthorizeHelper.submitLinkDisk();
-//
 //		LoginPageHelper.signIn("n.prakapovich", "fortest123");
 //
-//		DiskPageHelper.openDownload();
+	//	DiskPageHelper.openDownload();
 
 
 	}

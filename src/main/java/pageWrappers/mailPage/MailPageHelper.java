@@ -2,7 +2,6 @@ package pageWrappers.mailPage;
 
 import framework.driver.UiDriver;
 import framework.wait.Wait;
-import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,11 +32,11 @@ public class MailPageHelper {
 
 	public static void moveToClick() {
 		Actions action = new Actions(UiDriver.getDriver());
-		action.moveToElement(MailPage.getPenal().getElement()).perform();
+		action.moveToElement(MailPage.getPanel().getElement()).perform();
 	}
 
 	public static void submitSaveToDisk() {
-		Wait.waitUntilVisibilityOfElement(MailPage.getPenal().getLocator());
+		Wait.waitUntilVisibilityOfElement(MailPage.getPanel().getLocator());
 		moveToClick();
 		MailPage.getSaveDisk().click();
 		Wait.waitUntilVisibilityOfElement(MailPage.getIframe().getLocator());
@@ -46,6 +45,10 @@ public class MailPageHelper {
 
 		UiDriver.getDriver().findElement(MailPage.getCloseIframe().getLocator()).click();
 
+	}
+
+	public static void openDisk(){
+		MailPage.getDiskButton().click();
 	}
 
 	public static void logOut() {
