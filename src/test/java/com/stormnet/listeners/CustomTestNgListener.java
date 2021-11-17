@@ -13,12 +13,12 @@ import java.lang.reflect.Method;
 public class CustomTestNgListener implements ITestListener {
 	@Override
 	public void onTestSuccess(ITestResult result){
-		System.out.println("Test iuhyihh"+result.getStatus());
+		System.out.println("Test ok"+result.getStatus());
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result){
-		System.out.println("Test"+result.getStatus());
+		System.out.println("Test failed"+result.getStatus());
 	}
 
 }

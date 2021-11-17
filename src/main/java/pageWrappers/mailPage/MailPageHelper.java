@@ -1,31 +1,22 @@
 package pageWrappers.mailPage;
 
-import fileManager.CreateFile;
 import framework.driver.UiDriver;
-import framework.driver.UiDriverHelper;
-import framework.webElements.HtmlElement;
-import org.openqa.selenium.WebElement;
+import framework.wait.Wait;
+import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageWrappers.mailPage.newMailForm.MailForm;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
-import java.util.Objects;
 
 import static framework.driver.UiDriver.getDriver;
 
 public class MailPageHelper {
 
-	public static void submitNewMailButton() {
-
+	public static void submitNewMail() {
 		MailPage.getNewMail().click();
-	}
-
-	public static void waitUntilOpenedMailPage() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-		wait.withMessage("Page was not opened")
-				.until(ExpectedConditions.visibilityOfElementLocated(MailPage.MAIL_PAGE_LOCATOR));
+		Wait.waitUntilVisibilityOfElement(MailForm.FORM_NEW_MAIL_LOCATOR);
 	}
 
 	public static void pegeRefresh() {
@@ -40,30 +31,31 @@ public class MailPageHelper {
 		MailPage.getLogOut().click();
 	}
 
+	public static void moveToClick() {
+		Actions action = new Actions(UiDriver.getDriver());
+		action.moveToElement(MailPage.getPenal().getElement()).perform();
+	}
+
+	public static void submitSaveToDisk() {
+		Wait.waitUntilVisibilityOfElement(MailPage.getPenal().getLocator());
+		moveToClick();
+		MailPage.getSaveDisk().click();
+		Wait.waitUntilVisibilityOfElement(MailPage.getIframe().getLocator());
+		UiDriver.getDriver().switchTo().frame(MailPage.getIframe().getElement());
+		Wait.waitUntilToBeClickable(MailPage.geButtonMoveInFrame().getElement());
+
+		UiDriver.getDriver().findElement(MailPage.getCloseIframe().getLocator()).click();
+
+	}
+
 	public static void logOut() {
+		//Wait.waitUntilVisibilityOfElement(MailPage.getProfile().getLocator());
 		openProfile();
 		submitLogOut();
 		UiDriver.getDriver().close();
 		//UiDriver.getDriver().switchTo().window();
-
 	}
 
-	public static void submitSaveDisk() {
-		//waitUntilGetSaveDisk();
-		MailPage.getSaveDisk().click();
-		UiDriver.getDriver().switchTo().frame(MailPage.getIframe().getElement());
-		//waitUntilCopyFileToDisk();
-
-		pegeRefresh();
-
-
-	}
-
-	public static void waitUntilCopyFileToDisk() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-		wait.withMessage("Page was not opened")
-				.until(ExpectedConditions.elementToBeClickable(MailPage.getMoveInFrame().getElement()));
-	}
 
 	public static void waitUntilGetSaveDisk() {
 		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));

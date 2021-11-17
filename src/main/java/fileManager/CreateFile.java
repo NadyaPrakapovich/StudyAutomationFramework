@@ -16,14 +16,12 @@ public  class CreateFile {
 	public static File  createFile() throws IOException {
 
 		String text = "Hello world!";
-
-		//String fileName = (new RandomString(5, ThreadLocalRandom.current()).nextString() + ".txt");
 		String fileName = generationNameFile()+".txt";
 		System.out.println(fileName);
 		File file = new File(fileName);
 		try {
 			file.createNewFile();
-			FileWriter writer = null;
+			FileWriter writer;
 			writer = new FileWriter(fileName);
 			writer.write(text);
 			writer.close();
@@ -37,7 +35,6 @@ public  class CreateFile {
 
 	public static String generationNameFile() {
  		String fileName=new BigInteger(130, random).toString(32);
-
 		return fileName.substring(0,5);
 
 	}

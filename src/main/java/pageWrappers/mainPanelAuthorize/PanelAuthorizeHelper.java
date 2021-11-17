@@ -16,6 +16,7 @@ import static framework.driver.UiDriver.getDriver;
 public class PanelAuthorizeHelper {
 
 	public static void openMail() {
+		UiDriver.getDriver().manage().window().maximize();
 		PanelAuthorize.getMailLink().click();
 		UiDriverHelper.setChildWindow();
 	}

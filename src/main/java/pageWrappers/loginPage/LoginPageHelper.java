@@ -1,14 +1,7 @@
 package pageWrappers.loginPage;
 
 import framework.wait.Wait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pageWrappers.mailPage.MailPage;
-import pageWrappers.mailPage.MailPageHelper;
-
-import java.time.Duration;
-
-import static framework.driver.UiDriver.getDriver;
 
 public class LoginPageHelper {
 
@@ -30,10 +23,10 @@ public class LoginPageHelper {
 	public static void signIn(String userName, String password) {
 		fillUserName(userName);
 		submitSignInButton();
-		Wait.waitUntilvisibilityOfElement(LoginPage.getUPassowordField().getLocator());
+		Wait.waitUntilVisibilityOfElement(LoginPage.getUPassowordField().getLocator());
 		fillPassword(password);
 		submitSignInButton();
-		Wait.waitUntilvisibilityOfElement(MailPage.MAIL_PAGE_LOCATOR);
+		Wait.waitUntilVisibilityOfElement(MailPage.MAIL_PAGE_LOCATOR);
 		//MailPageHelper.waitUntilOpenedMailPage();
 
 	}

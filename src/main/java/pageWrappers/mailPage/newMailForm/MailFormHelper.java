@@ -2,6 +2,7 @@ package pageWrappers.mailPage.newMailForm;
 
 import fileManager.CreateFile;
 import framework.driver.UiDriver;
+import framework.wait.Wait;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -30,15 +31,9 @@ public class MailFormHelper {
 		MailForm.getFieldTheme().sendKeys(theme);
 	}
 
-	public static void sendMail() {
-		MailForm.getButtonSendMail().click();
-	}
 
-
-	public static void waitUntilOpenedMailForm() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-		wait.withMessage("")
-				.until(ExpectedConditions.visibilityOfElementLocated(MailForm.FORM_NEW_MAIL_LOCATOR));
+	public static void attachFile() throws IOException {
+		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(CreateFile.createFile().getAbsolutePath());
 	}
 
 	public static void writeMail(String whom, String subject, String theme) throws IOException {
@@ -46,25 +41,13 @@ public class MailFormHelper {
 		fillSubject(subject);
 		fillTheme(theme);
 		attachFile();
-		sendMail();
-		waitUntilDownloadihgFle();
-		//closeAlertAboutSendMail();
+		Wait.waitUntilInvisibilityOfElement(MailForm.FORM_PROGRESSBAR_LOCATOR);
+	}
+
+	public static void sendMail() {
+		MailForm.getButtonSendMail().click();
 		pageRefresh();
 	}
-
-	public static void attachFile() throws IOException {
-		//File file=cr
-		//MailForm.getAttachFile();
-
-		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(CreateFile.createFile().getAbsolutePath());
-
-	}
-
-	public static void waitUntilDownloadihgFle() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(MailForm.FORM_PROGRESSBAR_LOCATOR));
-	}
-
 	public static void closeAlertAboutSendMail() {
 		//String keyPressed= Keys.chord(Keys.ENTER,Keys.CONTROL);
 		//	UiDriver.getDriver().findElement(By.className(".ComposeDoneScreen-Wrapper")).sendKeys(keyPressed);
