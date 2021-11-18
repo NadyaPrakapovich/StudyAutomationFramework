@@ -1,6 +1,6 @@
 package pageWrappers.loginPage;
 
-import framework.wait.Wait;
+import framework.waiter.Wait;
 import pageWrappers.mailPage.MailPage;
 
 public class LoginPageHelper {
@@ -10,7 +10,7 @@ public class LoginPageHelper {
 		LoginPage.getUserNameField().sendKeys(userName);
 	}
 
-	//	@Step("fill password")
+	//@Step("Fill password")
 	public static void fillPassword(String password) {
 		LoginPage.getUPassowordField().sendKeys(password);
 	}
@@ -20,6 +20,7 @@ public class LoginPageHelper {
 		LoginPage.getSignInButton().click();
 	}
 
+	//@Step( "Sign in with right credentials")
 	public static void signIn(String userName, String password) {
 		fillUserName(userName);
 		submitSignInButton();

@@ -1,19 +1,15 @@
 package pageWrappers.mailPage.newMailForm;
 
-import fileManager.CreateFile;
+import framework.fileManager.CreateFile;
 import framework.driver.UiDriver;
-import framework.wait.Wait;
+import framework.waiter.Wait;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.time.Year;
 
 import static framework.driver.UiDriver.getDriver;
 
@@ -37,6 +33,7 @@ public class MailFormHelper {
 	}
 
 	public static void writeMail(String whom, String subject, String theme) throws IOException {
+		Wait.waitUntilVisibilityOfElement(MailForm.FORM_NEW_MAIL_LOCATOR);
 		fillWhom(whom);
 		fillSubject(subject);
 		fillTheme(theme);

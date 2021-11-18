@@ -1,14 +1,10 @@
-package fileManager;
-
-import net.bytebuddy.utility.RandomString;
+package framework.fileManager;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.Random;
 
 public  class CreateFile {
 	private static SecureRandom random = new SecureRandom();

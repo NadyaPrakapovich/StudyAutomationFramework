@@ -34,15 +34,15 @@ public class MainTest extends AbstractTest {
 
 		MailPageHelper.submitSaveToDisk();
 
-	//	MailPageHelper.openDisk();
+		MailPageHelper.openDisk();
 
-//		MailPageHelper.logOut();
-//		PanelAuthorizeHelper.submitLinkDisk();
-//		LoginPageHelper.signIn("n.prakapovich", "fortest123");
-//
-	//	DiskPageHelper.openDownload();
+		DiskPageHelper.openDownload();
 
+		DiskPageHelper.moveFileToMainDir();
 
+		DiskPageHelper.openFolderFileInDisk();
+
+		DiskPageHelper.moveFileToBasket();
 	}
 
 
