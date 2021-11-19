@@ -28,7 +28,7 @@ public class MailPageHelper {
 		action.moveToElement(MailPage.getPanel().getElement()).perform();
 	}
 
-	public static void submitFileSaveToDisk(String fileName) {
+	public static void submitFileSaveToDisk() {
 		Wait.waitUntilVisibilityOfElement(MailPage.getPanel().getLocator());
 		moveToClick();
 		MailPage.getSaveDisk().click();
@@ -62,18 +62,4 @@ public class MailPageHelper {
 	}
 
 
-//	public static void findMail() {
-//		List<WebElement> attachFiles = UiDriver.getDriver().findElements(MailPage.LIST_ATTACH_FILE_LOCATOR);
-//		for (WebElement attachFile : attachFiles) {
-//			try {
-//				if (Objects.equals(attachFile, CreateFile.createFile().getName().toString()){
-//
-//				}
-//
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//
-//		}
-//	}
 }

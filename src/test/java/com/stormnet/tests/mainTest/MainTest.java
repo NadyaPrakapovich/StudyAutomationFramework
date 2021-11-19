@@ -3,6 +3,7 @@ package com.stormnet.tests.mainTest;
 import com.stormnet.tests.AbstractTest;
 import framework.driver.UiDriver;
 import framework.fileManager.FileManager;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageWrappers.diskPage.DiskPageHelper;
@@ -15,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class MainTest extends AbstractTest {
-
+	File file;
 	@BeforeMethod
 	public void OpenPage() {
 		UiDriver.getDriver().get("https://yandex.by");
@@ -23,7 +24,7 @@ public class MainTest extends AbstractTest {
 
 	@Test(testName = "Send mail")
 	public void mainTest() throws IOException {
-		File file = FileManager.createFile();
+		file = FileManager.createFile();
 
 		PanelAuthorizeHelper.openMail();
 
@@ -36,7 +37,7 @@ public class MainTest extends AbstractTest {
 
 		MailFormHelper.sendMail();
 
-		MailPageHelper.submitFileSaveToDisk(file.getName());
+		MailPageHelper.submitFileSaveToDisk();
 
 		MailPageHelper.openDisk();
 
@@ -48,6 +49,11 @@ public class MainTest extends AbstractTest {
 
 		DiskPageHelper.moveFileToBasket();
 
+		DiskPageHelper.checkFileinBasket();
+
+		}
+	@AfterMethod
+	public void DeleteFile(){
 		file.delete();
 	}
 

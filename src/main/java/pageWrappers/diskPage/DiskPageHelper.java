@@ -54,7 +54,15 @@ public class DiskPageHelper {
 	public static void moveFileToBasket() {
 		Wait.waitUntilVisibilityOfElement(DiskPage.getFileForMove().getLocator());
 		Actions action = new Actions(UiDriver.getDriver());
-		action.dragAndDrop(DiskPage.getFileForMove().getElement(), DiskPage.getBasket().getElement()).build().perform();
-		//	dragAndDrop.perform();
+	//	action.dragAndDrop(DiskPage.getFileForMove().getElement(), DiskPage.getBasket().getElement()).build().perform();
+
+	  action.clickAndHold(DiskPage.getFileForMove().getElement())
+				.moveToElement(DiskPage.getBasket().getElement())
+				.release(DiskPage.getBasket().getElement())
+				.build()
+				.perform();
+	}
+
+	public static void checkFileinBasket() {
 	}
 }
