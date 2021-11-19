@@ -1,12 +1,12 @@
 package pageWrappers.mailPage.newMailForm;
 
-import framework.fileManager.CreateFile;
 import framework.driver.UiDriver;
 import framework.waiter.Wait;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utility.Logger;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -15,8 +15,8 @@ import static framework.driver.UiDriver.getDriver;
 
 public class MailFormHelper {
 
-	public static void fillWhom(String whom) {
-		MailForm.getFieldWhom().sendKeys(whom);
+	public static void fillToSend(String whom) {
+		MailForm.getFieldToSend().sendKeys(whom);
 	}
 
 	public static void fillSubject(String subject) {
@@ -28,34 +28,26 @@ public class MailFormHelper {
 	}
 
 
-	public static void attachFile() throws IOException {
-		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(CreateFile.createFile().getAbsolutePath());
+	public static void attachFile(String filepath) throws IOException {
+		Logger.getLogger().info("Attach to file");
+		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(filepath);
+		Wait.waitUntilInvisibilityOfElement(MailForm.FORM_PROGRESSBAR_LOCATOR);
 	}
 
-	public static void writeMail(String whom, String subject, String theme) throws IOException {
+	public static void writeMail(String toSend, String subject, String theme) throws IOException {
 		Wait.waitUntilVisibilityOfElement(MailForm.FORM_NEW_MAIL_LOCATOR);
-		fillWhom(whom);
+		Logger.getLogger().info("Try to write mail {}/{}/{}", toSend, subject,theme);
+		fillToSend(toSend);
 		fillSubject(subject);
 		fillTheme(theme);
-		attachFile();
-		Wait.waitUntilInvisibilityOfElement(MailForm.FORM_PROGRESSBAR_LOCATOR);
+		//attachFile();
 	}
 
 	public static void sendMail() {
 		MailForm.getButtonSendMail().click();
 		pageRefresh();
+		Logger.getLogger().info("Send mail success");
 	}
-	public static void closeAlertAboutSendMail() {
-		//String keyPressed= Keys.chord(Keys.ENTER,Keys.CONTROL);
-		//	UiDriver.getDriver().findElement(By.className(".ComposeDoneScreen-Wrapper")).sendKeys(keyPressed);
-//		Actions actions=new Actions(UiDriver.getDriver());
-//		actions.keyDown(Keys.ENTER).keyDown(Keys.CONTROL).perform();
-
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(MailForm.ALERT_ABOUT_MAIL_WAS_SEND_LOCATOR));
-
-	}
-
 
 	public static void pageRefresh() {
 		try {

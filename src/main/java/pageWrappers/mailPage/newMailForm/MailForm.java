@@ -19,7 +19,7 @@ public class MailForm {
 	//	private static final By FIELD_CHOOSE_EMAIL_LOCATOR = By.className("ContactsSuggestItemDesktop-Email");
 	public static final By FORM_NEW_MAIL_LOCATOR = By.cssSelector(".ComposePopup-Content");
 
-	public static Input getFieldWhom() {
+	public static Input getFieldToSend() {
 		return new Input(FIELD_TO_SEND_LOCATOR);
 	}
 

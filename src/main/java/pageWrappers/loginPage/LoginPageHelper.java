@@ -1,11 +1,13 @@
 package pageWrappers.loginPage;
 
 import framework.waiter.Wait;
+import io.qameta.allure.Step;
 import pageWrappers.mailPage.MailPage;
+import utility.Logger;
 
 public class LoginPageHelper {
 
-	//@Step("Fill username {0}")
+	//@Step("Fill username")
 	public static void fillUserName(String userName) {
 		LoginPage.getUserNameField().sendKeys(userName);
 	}
@@ -22,13 +24,13 @@ public class LoginPageHelper {
 
 	//@Step( "Sign in with right credentials")
 	public static void signIn(String userName, String password) {
+		Logger.getLogger().info("Try to login as {}/{}", userName, password);
 		fillUserName(userName);
 		submitSignInButton();
 		Wait.waitUntilVisibilityOfElement(LoginPage.getUPassowordField().getLocator());
 		fillPassword(password);
 		submitSignInButton();
 		Wait.waitUntilVisibilityOfElement(MailPage.MAIL_PAGE_LOCATOR);
-		//MailPageHelper.waitUntilOpenedMailPage();
-
+		Logger.getLogger().info("Logged in success as {}/{}", userName, password);
 	}
 }

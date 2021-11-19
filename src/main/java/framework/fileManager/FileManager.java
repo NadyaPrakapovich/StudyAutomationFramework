@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public  class CreateFile {
+public  class FileManager {
 	private static SecureRandom random = new SecureRandom();
 
 	public static File  createFile() throws IOException {
@@ -34,6 +34,8 @@ public  class CreateFile {
 		return fileName.substring(0,5);
 
 	}
+
+
 }
 
 

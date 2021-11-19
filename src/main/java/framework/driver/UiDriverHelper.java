@@ -2,12 +2,15 @@ package framework.driver;
 
 import java.util.Iterator;
 import java.util.Set;
+import utility.Logger;
 
 public class UiDriverHelper {
 	private static String mainWindowHandle;
 
 	public static String getTitle() {
-		return UiDriver.getDriver().getTitle();
+		String title = UiDriver.getDriver().getTitle();
+		Logger.getLogger().info("Got title window {}", title);
+		return title;
 	}
 
 	public static String getMainWindowHandle() {
@@ -21,17 +24,10 @@ public class UiDriverHelper {
 		Iterator<String> iterator = allWindowHandles.iterator();
 		while (iterator.hasNext()) {
 			String ChildWindow = iterator.next();
-			if (!getMainWindowHandle().equalsIgnoreCase(ChildWindow)){
+			if (!mainWindowHandle.equalsIgnoreCase(ChildWindow)){
 				UiDriver.getDriver().switchTo().window(ChildWindow);
 			}
-//			else {
-//				UiDriver.getDriver().switchTo().window(getMainWindowHandle());
-//			}
 		}
-	}
-
-	public static void setMainWindow() {
-		UiDriver.getDriver().switchTo().window(getMainWindowHandle());
 	}
 
 }

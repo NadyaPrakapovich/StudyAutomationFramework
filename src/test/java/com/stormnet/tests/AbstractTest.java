@@ -7,9 +7,8 @@ import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.ITestResult;
+import org.testng.annotations.*;
 
 import java.io.ByteArrayInputStream;
 
@@ -19,22 +18,20 @@ public class AbstractTest {
 
 	@BeforeMethod
 	public void setup() {
-
 		UiDriver.getDriver();
 		UiDriver.getDriver().manage().window().maximize();
 	}
 
 	@AfterMethod
-	public void tearDown() {
-//		public void tearDown(ITestResult result) {
-//			if (!result.isSuccess()) {
-//				Allure.attachment("attachment2.png", new ByteArrayInputStream(takeScreenshot()));
-//			}
+	public void tearDown(ITestResult result) {
+		if (!result.isSuccess()) {
+			Allure.attachment("attachment.png", new ByteArrayInputStream(takeScreenshot()));
+		}
 		UiDriver.closeDriver();
 	}
 
-//		public byte[] takeScreenshot() {
-//			return ((TakesScreenshot) UiDriver.getDriver()).getScreenshotAs(OutputType.BYTES);
-//		}
+	public byte[] takeScreenshot() {
+		return ((TakesScreenshot) UiDriver.getDriver()).getScreenshotAs(OutputType.BYTES);
+	}
 
 }

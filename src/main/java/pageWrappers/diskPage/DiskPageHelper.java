@@ -4,12 +4,14 @@ import framework.driver.UiDriver;
 import framework.waiter.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import utility.Logger;
 
 public class DiskPageHelper {
 
 	public static void openDownload() {
 		Actions action = new Actions(UiDriver.getDriver());
 		action.doubleClick(UiDriver.getDriver().findElement(DiskPage.getFolderDownload().getLocator())).perform();
+		Logger.getLogger().info("Open folder Downloads on disk");
 	}
 
 	public static void openContextMenu() {
@@ -42,6 +44,7 @@ public class DiskPageHelper {
 	public static void moveFileToMainDir() {
 		Wait.waitUntilVisibilityOfElement(DiskPage.getFolderDownload().getLocator());
 		openContextMenu();
+		Logger.getLogger().info("Move file in folder Files");
 	}
 
 	public static void openFolderFileInDisk() {
