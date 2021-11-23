@@ -33,8 +33,7 @@ public class MainTest extends AbstractTest {
 		MailPageHelper.submitNewMail();
 
 		MailFormHelper.writeMail("n.prakapovich@yandex.by", "Hello", "First test");
-		MailFormHelper.attachFile(file.getAbsolutePath());
-
+		MailFormHelper.attachFile(file);
 		MailFormHelper.sendMail();
 
 		MailPageHelper.submitFileSaveToDisk();
@@ -47,7 +46,7 @@ public class MainTest extends AbstractTest {
 
 		DiskPageHelper.openFolderFileInDisk();
 
-		DiskPageHelper.moveFileToBasket();
+		DiskPageHelper.moveFileToBasketDragAndDrop();
 
 		DiskPageHelper.checkFileinBasket();
 

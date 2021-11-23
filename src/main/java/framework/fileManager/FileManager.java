@@ -1,18 +1,19 @@
 package framework.fileManager;
 
+import utility.Logger;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.UUID;
 
-public  class FileManager {
-	private static SecureRandom random = new SecureRandom();
+public class FileManager {
 
-	public static File  createFile() throws IOException {
+	public static File createFile()  {
 
 		String text = "Hello world!";
-		String fileName = generationNameFile()+".txt";
+		String fileName = generationNameFile() + ".txt";
 		System.out.println(fileName);
 		File file = new File(fileName);
 		try {
@@ -22,17 +23,15 @@ public  class FileManager {
 			writer.write(text);
 			writer.close();
 		} catch (IOException e) {
-			e.getMessage();
+			Logger.getLogger().error("File is not created",e);
 		}
 		return file;
 	}
 
 
-
 	public static String generationNameFile() {
- 		String fileName=new BigInteger(130, random).toString(32);
-		return fileName.substring(0,5);
-
+	  String filename=(UUID.randomUUID().toString().substring(0, 5));
+		return filename;
 	}
 
 

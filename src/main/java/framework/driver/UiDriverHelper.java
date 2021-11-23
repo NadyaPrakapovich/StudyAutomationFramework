@@ -2,6 +2,9 @@ package framework.driver;
 
 import java.util.Iterator;
 import java.util.Set;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import utility.Logger;
 
 public class UiDriverHelper {
@@ -29,5 +32,17 @@ public class UiDriverHelper {
 			}
 		}
 	}
+
+	public static void pageRefresh() {
+		try {
+			UiDriver.getDriver().navigate().refresh();
+			Alert alt = UiDriver.getDriver().switchTo().alert();
+			alt.accept();
+		} catch (NoAlertPresentException noe) {
+			// no alert.
+		}
+	}
+
+
 
 }

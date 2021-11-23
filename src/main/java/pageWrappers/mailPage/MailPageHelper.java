@@ -7,9 +7,7 @@ import utility.Logger;
 
 public class MailPageHelper {
 
-	public static void submitNewMail() {
-		MailPage.getNewMail().click();
-	}
+	public static void submitNewMail() { 	MailPage.getNewMail().click(); 	}
 
 	public static void pegeRefresh() {
 		UiDriver.getDriver().navigate().refresh();
@@ -29,28 +27,25 @@ public class MailPageHelper {
 	}
 
 	public static void submitFileSaveToDisk() {
-		Wait.waitUntilVisibilityOfElement(MailPage.getPanel().getLocator());
+		Wait.waitUntilVisibilityOfElement(MailPage.getPanel());
 		moveToClick();
 		MailPage.getSaveDisk().click();
-		Wait.waitUntilVisibilityOfElement(MailPage.getIframe().getLocator());
+		Wait.waitUntilVisibilityOfElement(MailPage.getIframeToSaveDick());
 		closeIframeSaveDisk();
 		Logger.getLogger().info("File was save in disk");
 	}
 
 	public static void closeIframeSaveDisk(){
-		UiDriver.getDriver().switchTo().frame(MailPage.getIframe().getElement());
-		Wait.waitUntilToBeClickable(MailPage.geButtonMoveInFrame().getLocator());
-
-		//UiDriver.getDriver().findElement(MailPage.getCloseIframe().getLocator()).click();
+		UiDriver.getDriver().switchTo().frame(MailPage.getIframeToSaveDick().getElement());
+		Wait.waitUntilToBeClickable(MailPage.geButtonMoveInFrame());
 		MailPage.getCloseIframe().click();
 		UiDriver.getDriver().switchTo().defaultContent();
 	}
 
 	public static void openDisk(){
-		Wait.waitUntilToBeClickable(MailPage.getDiskButton().getLocator());
+		Wait.waitUntilToBeClickable(MailPage.getDiskButton());
 		MailPage.getDiskButton().click();
 		Logger.getLogger().info("Open disk");
-
 	}
 
 	public static void logOut() {

@@ -21,7 +21,7 @@ public class DiskPageHelper {
 		action.contextClick(UiDriver.getDriver().findElement(locator)).build().perform();
 
 		DiskPage.getItemMove().click();
-		Wait.waitUntilVisibilityOfElement(DiskPage.getButtonMoveFile().getLocator());
+		Wait.waitUntilVisibilityOfElement(DiskPage.getButtonMoveFile());
 		DiskPage.getButtonMoveFile().click();
 		//UiDriver.getDriver().findElement(DiskPage.getItemMove().getLocator()).click();
 		//Wait.waitUntilVisibilityOfElement(By.xpath("//div[@class='confirmation-dialog__footer']"));
@@ -42,7 +42,7 @@ public class DiskPageHelper {
 	}
 
 	public static void moveFileToMainDir() {
-		Wait.waitUntilVisibilityOfElement(DiskPage.getFolderDownload().getLocator());
+		Wait.waitUntilVisibilityOfElement(DiskPage.getFolderDownload());
 		openContextMenu();
 		Logger.getLogger().info("Move file in folder Files");
 	}
@@ -51,8 +51,8 @@ public class DiskPageHelper {
 		DiskPage.getFolderFile().click();
 	}
 
-	public static void moveFileToBasket() {
-		Wait.waitUntilVisibilityOfElement(DiskPage.getFileForMove().getLocator());
+	public static void moveFileToBasketDragAndDrop() {
+		Wait.waitUntilVisibilityOfElement(DiskPage.getFileForMove());
 		Actions action = new Actions(UiDriver.getDriver());
 	//	action.dragAndDrop(DiskPage.getFileForMove().getElement(), DiskPage.getBasket().getElement()).build().perform();
 

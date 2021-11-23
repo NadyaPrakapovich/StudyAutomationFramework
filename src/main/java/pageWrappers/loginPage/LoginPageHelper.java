@@ -27,10 +27,10 @@ public class LoginPageHelper {
 		Logger.getLogger().info("Try to login as {}/{}", userName, password);
 		fillUserName(userName);
 		submitSignInButton();
-		Wait.waitUntilVisibilityOfElement(LoginPage.getUPassowordField().getLocator());
+		Wait.waitUntilVisibilityOfElement(LoginPage.getUPassowordField());
 		fillPassword(password);
 		submitSignInButton();
-		Wait.waitUntilVisibilityOfElement(MailPage.MAIL_PAGE_LOCATOR);
+		Wait.waitUntilVisibilityOfElement(MailPage.getPageMail());
 		Logger.getLogger().info("Logged in success as {}/{}", userName, password);
 	}
 }
