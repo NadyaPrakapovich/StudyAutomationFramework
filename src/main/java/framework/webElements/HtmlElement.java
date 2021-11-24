@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 
-public class HtmlElement {
+public class HtmlElement  {
 	protected By locator;
 
 

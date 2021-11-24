@@ -15,7 +15,11 @@ public class MailForm {
 	private static final By BUTTON_SEND_LOCATOR = By.cssSelector(".ComposeControlPanel-SendButton");
 	private static final By FORM_NEW_MAIL_LOCATOR = By.cssSelector(".ComposePopup-Content");
 
-	public static Input getFieldToSend() {return new Input(FIELD_TO_SEND_LOCATOR);	}
+	private static final By TITLE_NEW_MAIL_LOCATOR = By.xpath("(//span[@class='composeHeader-Title'])[1]");
+
+	public static Input getFieldToSend() {
+		return new Input(FIELD_TO_SEND_LOCATOR);
+	}
 
 	public static Input getFieldSubject() {
 		return new Input(FIELD_SUBJECT_LOCATOR);
@@ -39,6 +43,10 @@ public class MailForm {
 
 	public static HtmlElement getProgressbar() {
 		return new HtmlElement(PROGRESSBAR_LOCATOR);
+	}
+
+	public static HtmlElement getTitleNewMail() {
+		return new HtmlElement(TITLE_NEW_MAIL_LOCATOR);
 	}
 
 }

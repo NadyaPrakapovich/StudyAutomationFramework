@@ -8,17 +8,11 @@ import org.openqa.selenium.NoAlertPresentException;
 import utility.Logger;
 
 public class UiDriverHelper {
-	private static String mainWindowHandle;
 
 	public static String getTitle() {
 		String title = UiDriver.getDriver().getTitle();
 		Logger.getLogger().info("Got title window {}", title);
 		return title;
-	}
-
-	public static String getMainWindowHandle() {
-		String WindowHandle = UiDriver.getDriver().getWindowHandle();
-		return WindowHandle;
 	}
 
 	public static void setChildWindow() {

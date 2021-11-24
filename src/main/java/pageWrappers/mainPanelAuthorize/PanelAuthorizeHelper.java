@@ -1,32 +1,25 @@
 package pageWrappers.mainPanelAuthorize;
 
+import framework.driver.UiDriver;
 import framework.driver.UiDriverHelper;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import framework.waiter.Wait;
+import io.qameta.allure.Step;
+import org.testng.Assert;
 import utility.Logger;
-
-import java.time.Duration;
-
-import static framework.driver.UiDriver.getDriver;
 
 public class PanelAuthorizeHelper {
 
+	@Step("Open page  authorization")
 	public static void openMail() {
-
 		PanelAuthorize.getMailLink().click();
 		UiDriverHelper.setChildWindow();
-		Logger.getLogger().info("Open mail page");
-	}
-
-
-	public static void waitUntilLinkDisk() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(15));
-		wait.withMessage("")
-				.until(ExpectedConditions.visibilityOfElementLocated(PanelAuthorize.PANEL_AUTORIZATION_LOCATOR));
+		Logger.getLogger().info("Open page authorization");
+		String titleWindows = UiDriver.getDriver().getTitle();
+		Assert.assertEquals(titleWindows, "Авторизация", "Unknown window title");
 	}
 
 	public static void submitLinkDisk() {
-		waitUntilLinkDisk();
+		Wait.waitUntilVisibilityOfElement(PanelAuthorize.getPanelAthorization());
 		PanelAuthorize.getDiskLink().click();
 		UiDriverHelper.setChildWindow();
 	}

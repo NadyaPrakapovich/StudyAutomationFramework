@@ -13,7 +13,6 @@ import pageWrappers.mainPanelAuthorize.PanelAuthorizeHelper;
 import pageWrappers.mailPage.newMailForm.MailFormHelper;
 
 import java.io.File;
-import java.io.IOException;
 
 public class MainTest extends AbstractTest {
 	File file;
@@ -23,7 +22,7 @@ public class MainTest extends AbstractTest {
 	}
 
 	@Test(testName = "Send mail")
-	public void mainTest() throws IOException {
+	public void mainTest() {
 		file = FileManager.createFile();
 
 		PanelAuthorizeHelper.openMail();
@@ -36,19 +35,19 @@ public class MainTest extends AbstractTest {
 		MailFormHelper.attachFile(file);
 		MailFormHelper.sendMail();
 
-		MailPageHelper.submitFileSaveToDisk();
+		MailPageHelper.submitSaveFileToDisk(file);
 
 		MailPageHelper.openDisk();
 
 		DiskPageHelper.openDownload();
 
-		DiskPageHelper.moveFileToMainDir();
+		DiskPageHelper.moveFileToMainFolder(file);
 
 		DiskPageHelper.openFolderFileInDisk();
 
-		DiskPageHelper.moveFileToBasketDragAndDrop();
+		DiskPageHelper.moveFileToBasketByDragAndDrop(file);
 
-		DiskPageHelper.checkFileinBasket();
+		DiskPageHelper.checkFileinBasket(file);
 
 		}
 	@AfterMethod

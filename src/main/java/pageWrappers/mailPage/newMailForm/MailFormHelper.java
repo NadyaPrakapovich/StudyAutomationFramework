@@ -4,6 +4,7 @@ import framework.driver.UiDriver;
 import framework.driver.UiDriverHelper;
 import framework.waiter.Wait;
 import io.qameta.allure.Step;
+import org.testng.Assert;
 import utility.Logger;
 
 import java.io.File;
@@ -22,24 +23,24 @@ public class MailFormHelper {
 		MailForm.getFieldTheme().sendKeys(theme);
 	}
 
-	//@Step("Attach file")
-	public static void attachFile(File file) {
-		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(file.getAbsolutePath());
-		Wait.waitUntilInvisibilityOfElement(MailForm.getProgressbar());
-		Logger.getLogger().info("Attach to file");
-	}
-
-	//@Step("Write mail")
+	@Step("Write mail")
 	public static void writeMail(String toSend, String subject, String theme) {
-		Wait.waitUntilVisibilityOfElement(MailForm.getFormNewMail());
-		//Wait.waitUntilVisibilityOfElement(MailForm.getFieldToSend());
+		Wait.waitUntilVisibilityOfElement(MailForm.getFieldToSend());
 		fillToSend(toSend);
 		fillSubject(subject);
 		fillTheme(theme);
 		Logger.getLogger().info("Write mail {}/{}/{}", toSend, subject, theme);
+
 	}
 
-	//@Step("Send mail")
+	@Step("Attach file")
+	public static void attachFile(File file) {
+		UiDriver.getDriver().findElement(MailForm.getAttachFile().getLocator()).sendKeys(file.getAbsolutePath());
+		Wait.waitUntilInvisibilityOfElement(MailForm.getProgressbar());
+		Logger.getLogger().info("Attach to file");
+		}
+
+	@Step("Send mail")
 	public static void sendMail() {
 		MailForm.getButtonSendMail().click();
 		UiDriverHelper.pageRefresh();
