@@ -4,8 +4,6 @@ import framework.webElements.Button;
 import framework.webElements.HtmlElement;
 import org.openqa.selenium.By;
 
-import java.util.List;
-
 public class DiskPage {
 	private static final By FOLDER_DOWNLOAD_LOCATOR = By.xpath("(//div[@class='listing-item__fields'])[1]");
 	//private static final By FOLDER_DOWNLOAD_LOCATOR = By.cssSelector(".navigation__link_downloads");
@@ -17,7 +15,9 @@ public class DiskPage {
 
 	private static final By FILENAME_IN_DOWNLOADS = By.xpath("(//span[@class='clamped-text'])[2]");
 	private static final By FILENAME_IN_BASKET = By.xpath("//span[@class='clamped-text'])[1]");
-	private static final By LIST_FILENAME_IN_DOWNLOADS = By.cssSelector(".clamped-text");
+	private static final By MESSAGE_FILE_MOVE_TO_FOLDER_FILES=By.cssSelector(".notifications__item_moved");
+	private static final By LIST_FILENAME_LOCATOR = By.cssSelector(".clamped-text");
+	private static final By FILENAME_IN_FOLDER_FILE = By.xpath("(//div[contains(@class,'listing-item_theme_tile')])[3]");
 
 	public static Button getButtonMoveFile() {
 		return new Button(BUTTON_IN_DIALOG_MOVE_FILE_LOCATOR);
@@ -43,8 +43,8 @@ public class DiskPage {
 		return new Button(BASKET_LOCATOR);
 	}
 
-	public static HtmlElement getListFileNameInDownloads(){
-				return new HtmlElement(LIST_FILENAME_IN_DOWNLOADS);
+	public static HtmlElement getListFileName(){
+				return new HtmlElement(LIST_FILENAME_LOCATOR);
 	}
 
 	public static HtmlElement getFileNameInDownloads(){
@@ -52,5 +52,13 @@ public class DiskPage {
 	}
 	public static HtmlElement getFileNameInBasket(){
 		return new HtmlElement(FILENAME_IN_DOWNLOADS);
+	}
+
+	public static HtmlElement getmMessageFileMoved(){
+		return new HtmlElement(MESSAGE_FILE_MOVE_TO_FOLDER_FILES);
+	}
+
+	public static HtmlElement getFileNameInFolderFiles(){
+		return new HtmlElement(FILENAME_IN_FOLDER_FILE);
 	}
 }

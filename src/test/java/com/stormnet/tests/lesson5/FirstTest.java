@@ -20,17 +20,17 @@ public class FirstTest extends AbstractTest {
 		UiDriver.getDriver().get("https://google.com");
 
 
-		WebElement searchField = driver.findElement(By.name("q"));
+		WebElement searchField = UiDriver.getDriver().findElement(By.name("q"));
 		searchField.sendKeys("banana");
 		searchField.sendKeys(Keys.ENTER);
 
-		List<WebElement> serarchResults = driver.findElements(By.tagName("h3"));
+		List<WebElement> serarchResults = UiDriver.getDriver().findElements(By.tagName("h3"));
 		WebElement result = serarchResults.get(2);
 		result.click();
 
-		String windowTitle=driver.getTitle();
+		String windowTitle = UiDriver.getDriver().getTitle();
 		System.out.println(windowTitle);
-		Assert.assertEquals(windowTitle, "Banana - Wikipedia","Unknown window title");
+		Assert.assertEquals(windowTitle, "Banana - Wikipedia", "Unknown window title");
 	}
 
 

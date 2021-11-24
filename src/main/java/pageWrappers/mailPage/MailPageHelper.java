@@ -3,7 +3,6 @@ package pageWrappers.mailPage;
 import framework.driver.UiDriver;
 import framework.waiter.Wait;
 import io.qameta.allure.Step;
-import org.apache.hc.core5.util.Asserts;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pageWrappers.mailPage.newMailForm.MailForm;
@@ -47,6 +46,7 @@ public class MailPageHelper {
 		Wait.waitUntilVisibilityOfElement(MailPage.getIframeToSaveDick());
 		closeIframeSaveDisk();
 
+		Wait.waitUntilVisibilityOfElement(MailPage.getNameFile());
 		Assert.assertTrue(MailPage.getNameFile().getElement().getAttribute("title").contains(file.getName()),"Save wrong file");
 		Logger.getLogger().info("File was save in disk");
 

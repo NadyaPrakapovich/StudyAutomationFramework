@@ -13,6 +13,7 @@ public class UiDriver {
 	private UiDriver() {
 		WebDriverManager.chromedriver().setup();
 		this.driver = new ChromeDriver();
+		this.driver.manage().window().maximize();
 	}
 
 	public static WebDriver getDriver() {

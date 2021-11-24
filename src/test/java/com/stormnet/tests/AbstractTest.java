@@ -14,13 +14,6 @@ import java.io.ByteArrayInputStream;
 
 @Listeners({AllureTestNg.class, CustomTestNgListener.class})
 public class AbstractTest {
-	protected WebDriver driver;
-
-	@BeforeMethod
-	public void setup() {
-		UiDriver.getDriver();
-		UiDriver.getDriver().manage().window().maximize();
-	}
 
 	@AfterMethod
 	public void tearDown(ITestResult result) {
@@ -33,5 +26,7 @@ public class AbstractTest {
 	public byte[] takeScreenshot() {
 		return ((TakesScreenshot) UiDriver.getDriver()).getScreenshotAs(OutputType.BYTES);
 	}
+
+
 
 }

@@ -2,7 +2,6 @@ package pageWrappers.diskPage;
 
 import framework.driver.UiDriver;
 import framework.waiter.Wait;
-import framework.webElements.HtmlElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,8 +10,6 @@ import org.testng.Assert;
 import utility.Logger;
 
 import java.io.File;
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DiskPageHelper {
@@ -28,59 +25,71 @@ public class DiskPageHelper {
 		Wait.waitUntilVisibilityOfElement(DiskPage.getFolderDownload());
 		Wait.waitUntilVisibilityOfElement(DiskPage.getFileNameInDownloads());
 
-		//WebElement htmlFileName = findFileInDownloads(file.getName());
-		Assert.assertTrue(DiskPage.getFileNameInDownloads().getElement().getText().contains(file.getName()), "Move wrong file");
-		openContextMenu();
-		Logger.getLogger().info("Move file in folder Files");
+		By listElements = DiskPage.getListFileName().getLocator();
+		WebElement fileNameElement = findFile(listElements, file.getName());
+		Assert.assertTrue(fileNameElement.getText().contains(file.getName()), "Move wrong file");
+
+		openContextMenu(fileNameElement);
 
 	}
 
 	@Step("Open context menu")
-	public static void openContextMenu() {
+	public static void openContextMenu(WebElement fileNameElement) {
 
 		Actions action = new Actions(UiDriver.getDriver());
-		By locator = DiskPage.getFolderDownload().getLocator();
-		action.contextClick(UiDriver.getDriver().findElement(locator)).build().perform();
-		//action.contextClick(UiDriver.getDriver().findElement(fileName)).build().perform();
+		action.contextClick(fileNameElement).build().perform();
 		Logger.getLogger().info("Open context menu");
 
 		DiskPage.getItemMove().click();
 		Wait.waitUntilVisibilityOfElement(DiskPage.getButtonMoveFile());
 		DiskPage.getButtonMoveFile().click();
-
+		Wait.waitUntilVisibilityOfElement(DiskPage.getmMessageFileMoved());
+		Logger.getLogger().info("Move file in folder Files");
 	}
 
 	@Step("Open folder File")
 	public static void openFolderFileInDisk() {
 		Wait.waitUntilVisibilityOfElement(DiskPage.getFolderFile());
 		DiskPage.getFolderFile().click();
+		Logger.getLogger().info("Open folder Files");
 	}
 
 	@Step("DragAndDrop file to basket ")
 	public static void moveFileToBasketByDragAndDrop(File file) {
-		Wait.waitUntilVisibilityOfElement(DiskPage.getFileForMove());
+
+		By listElements = DiskPage.getListFileName().getLocator();
+		WebElement fileNameElement = findFile(listElements, file.getName());
+		Assert.assertTrue(fileNameElement.getText().contains(file.getName()), "Move wrong file");
+
+		WebElement wd = UiDriver.getDriver().findElement(By.xpath("//span[contains(text(),'"+fileNameElement.getText()+"')]/ancestor::div[contains(@class,'listing-item_theme_tile')]"));
 		Actions action = new Actions(UiDriver.getDriver());
-		action.dragAndDrop(DiskPage.getFileForMove().getElement(), DiskPage.getBasket().getElement()).build().perform();
-
+		action.dragAndDrop(wd, DiskPage.getBasket().getElement()).build().perform();
+		Wait.waitUntilVisibilityOfElement(DiskPage.getmMessageFileMoved());
+		Logger.getLogger().info("File move in basket");
 	}
 
-	public static WebElement findFileInDownloads(String fileName) {
-		List<WebElement> elements = UiDriver.getDriver().findElements(DiskPage.getListFileNameInDownloads().getLocator());
-		for (WebElement el : elements) {
-			if (el.getText().contains(fileName)) {
-				System.out.println(el.getText());
-				return  el;
-			}
-		}
-		Logger.getLogger().info("file exist in folder");
-		return null;
-	}
 
 	@Step("Chech file in basket")
 	public static void checkFileinBasket(File file) {
-		DiskPage.getBasket().click();
-		//Assert.assertTrue(DiskPage.getFileNameInBasket().getElement().getText().contains(file.getName()), "Wrong file");
-		;
 
+		DiskPage.getBasket().click();
+		Wait.waitUntilVisibilityOfElement(DiskPage.getListFileName());
+		By listElements = DiskPage.getListFileName().getLocator();
+		WebElement fileNameElement = findFile(listElements, file.getName());
+
+		Assert.assertTrue(fileNameElement.getText().contains(file.getName()), "Wrong file");
+		Logger.getLogger().info("File is basket");
+	}
+
+	public static WebElement findFile(By listElements, String fileName) {
+		List<WebElement> elements = UiDriver.getDriver().findElements(listElements);
+		for (WebElement el : elements) {
+			if (el.getText().contains(fileName)) {
+				System.out.println(el.getText());
+				return el;
+			}
+		}
+		Logger.getLogger().info("File exist in folder");
+		return null;
 	}
 }
